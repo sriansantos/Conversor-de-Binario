@@ -1,0 +1,205 @@
+def soma(a,b):
+    return a + b
+
+def subtração(a,b):
+    return a - b
+
+def multiplicação(a,b):
+    return a * b
+
+conv_cal = int(input("Para conversor digite 1\nPara Calculadora digite 2\nPara sair do programa digite 3\n:"))
+match conv_cal:
+    case(1):
+        opcao = int(input("Escolha a opção desejada:\n 1 para BIN para DECIMAL \n 2 para DECIMAL para BIN \n 3 para DECIMAL para HEXADECIMAL \n 4 HEXADECIMAL PARA DECIMAL \n 5 DECIMAL para OCTAL \n 6 OCTAL para DECIMAL \n :"))
+        match opcao:
+            case(1):
+                i = -1
+                conversao = []
+                bin = int(input('Escreva seu número Binario, Digite separadamente cada compenente do seu número bínario:'))
+                binario = []
+                while (bin == 0 or bin == 1):# para octal vou fazer bin == 1,2,3,4,5,6,7 oct = '1,2,3,4,5,6
+                    binario.append(bin)
+                    bin = int(input('Escreva o restante do número Binario (PARA DAR ENTRER NO SEU NÚMERO BINARIO DIGITE 2)'))
+                binario.reverse() #inverter a lista
+                for i, binario in enumerate(binario): # enumerar a lista
+                    conv = binario*2**i # conversão do binario vezes 2 elevado ao número de argumentos contados
+                conversao.append(conv)# aqui está adicionando a lista de conversão com a forma da conversao
+                print("Seu número decimal é:",sum(conversao)) # sum vai servir para somar
+            case(2):
+                decimal = (int(input('Escreva seu número decimal')))
+                result = []
+                opcao = int()
+
+                while decimal > 1:  # enquanto o numero decimal for maior que vai ficar dividindo
+                    binario = decimal % 2  # resto da divisão
+                    result.append(binario)  # aqui vai adicionar na lista de binario
+                    decimal //= 2  # aqui vai dividir o número por 2
+                result.append(decimal)  # aqui vai pegar o que sobrar da divisão e colocar no ultimo ponto
+                result.reverse()  # aqui
+                print("O seu número decimal em binario é:",result)
+            case(3):
+                decimal = (int(input('Escreva seu número decimal')))
+                result = []
+                resultado = ''
+                hexadecimal = "0123456789ABCDEF"  # Eu criei um repostirio de opção que usa cada posição da string seguindo a ordem
+
+                while decimal > 0:  # enquanto o numero decimal for maior que vai ficar dividindo
+                    if decimal == 0:
+                        break
+                    hexa = decimal % 16  # resto da divisão
+                    resultado = hexadecimal[hexa] + resultado
+                    decimal //= 16  # aqui vai dividir o número por 16
+                    result.append(resultado)  # aqui vai adicionar na lista de
+                result.reverse()  # aqui
+                print("O seu número decimal em Hexadecimal é:",resultado)
+            case(4):
+                hexadicionario = [('0',0),('1',1),('2',2),('3',3),('4',4),('5',5),('6',6),('7',7),('8',8),('9',9),('A',10),('B',11),('C',12),('D',13),('E',14),('F',15)]
+                hexas = dict(hexadicionario)
+                hexa = input('Escreva seu número Hexadecimal:').upper()
+                conversao = 0
+                hexadecimal = []
+                for i, caractere in enumerate(reversed(hexa)):  # reversed para é um reverso que atua dentro da string inves da lista
+                    if caractere in hexas:  # ele vai rodar caractere por caractere da lista que eu criei
+                        conv = hexas[caractere] * (16 ** i)  # Converte usando o dicionário, com base no que eu informei
+                        conversao += conv  # coloca na conversão que está zerada
+                    else:
+                        print(f'Caractere inválido encontrado: {caractere}')  # O f serve para formartar a string para poder usar variaveis
+                        break
+                print(f'Valor decimal: {conversao}')  # Mostra o resultado da conversão
+        # com o print fora do laço imprimi somente um valor
+            case(5):
+                decimal = (int(input('Escreva seu numero decimal')))
+                result = []
+                resultado = ''
+
+                while decimal > 7:  # enquanto o numero decimal for maior que vai ficar dividindo
+                    oct = decimal % 8  # resto da divisão
+                    decimal //= 8  # aqui vai dividir o número por 8
+                    result.append(str(oct))  # aqui vai adicionar na lista de
+                result.append(str(decimal))  # aqui vai pegar o que sobrar da divisão e colocar no ultimo ponto
+                result.reverse()  # aqui
+                for n in result:  # esse laço irá fazer com meu result vire uma string no proximo comando
+                    resultado += n  # esse irá pegar o result de string é transformar em uma string so fazendo com que o resultado apareça junto
+                print("O valor decimal em Octal é:",resultado)
+            case(6):
+                i = -1
+                conversao = []
+                oct = int(input('Escreva seu primeiro componente do seu número Octal que irá para Decimal\n', ))
+                octal = []
+                while (oct == 0, 1, 2, 3, 4, 5, 6, 7):  # para octal vou fazer bin == 1,2,3,4,5,6,7 oct = '1,2,3,4,5,6
+                    if oct not in (0, 1, 2, 3, 4, 5, 6, 7):
+                        break
+                    octal.append(oct)
+                    oct = int(input('Escreva o resto de seus componentes, PARA ENCERREGAR A ADIÇÃO DE NÚMERO DIGITE UM NÚMERO MAIOR QUE 7\n'))
+                octal.reverse()  # inverter a lista
+                for i, octal in enumerate(octal):  # enumerar a lista
+                    conv = octal * 8 ** i  # conversão do binario vezes 2 elevado ao número de argumentos contados
+                    conversao.append(conv)  # aqui está adicionando a lista de conversão com a forma da conversao
+                print(sum(conversao))  # sum vai servir para somar
+    case(2):
+        operacao = int(input("Escolha a operação que deseja fazer:\n1 para Soma\n2 para Subtração \n3 para Multiplicação\n:"))
+        match operacao:
+            case(1):
+                primeiro_numero = (int(input('Escreva seu número decimal: ')))
+                segundo_numero = (int(input('Escreva seu segundo número: ')))
+                resultado = soma(primeiro_numero, segundo_numero)
+                resultprimeiro = []
+                while primeiro_numero > 1:
+                    binario = primeiro_numero % 2
+                    resultprimeiro.append(binario)
+                    primeiro_numero //=2
+                resultprimeiro.append(primeiro_numero)
+                resultprimeiro.reverse()
+                print("O primeiro número em decimal é:",resultprimeiro)
+
+                resultsegundo = []
+                while segundo_numero > 1:
+                    binario = segundo_numero % 2
+                    resultsegundo.append(binario)
+                    segundo_numero //= 2
+                resultsegundo.append(segundo_numero)
+                resultsegundo.reverse()
+                print("O primeiro número em decimal é:", resultsegundo)
+
+                print('A subtração desses números é:',resultado)
+                decimal = resultado
+                result = []
+                opcao = int()
+
+                while decimal > 1:  # enquanto o numero decimal for maior que vai ficar dividindo
+                    binario = decimal % 2  # resto da divisão
+                    result.append(binario)  # aqui vai adicionar na lista de binario
+                    decimal //= 2  # aqui vai dividir o número por 2
+                result.append(decimal)  # aqui vai pegar o que sobrar da divisão e colocar no ultimo ponto
+                result.reverse()  # aqui
+                print("O seu número decimal em binario é:", result)
+            case(2):
+                primeiro_numero = (int(input('Escreva seu número decimal: ')))
+                segundo_numero = (int(input('Escreva seu segundo número: ')))
+                resultado = subtração(primeiro_numero, segundo_numero)
+                resultprimeiro = []
+                while primeiro_numero > 1:
+                    binario = primeiro_numero % 2
+                    resultprimeiro.append(binario)
+                    primeiro_numero //= 2
+                resultprimeiro.append(primeiro_numero)
+                resultprimeiro.reverse()
+                print("O primeiro número em decimal é:", resultprimeiro)
+
+                resultsegundo = []
+                while segundo_numero > 1:
+                    binario = segundo_numero % 2
+                    resultsegundo.append(binario)
+                    segundo_numero //= 2
+                resultsegundo.append(segundo_numero)
+                resultsegundo.reverse()
+                print("O primeiro número em decimal é:", resultsegundo)
+
+                print('A multiplicação desses números é:', resultado)
+                decimal = resultado
+                result = []
+                opcao = int()
+
+                while decimal > 1:  # enquanto o numero decimal for maior que vai ficar dividindo
+                    binario = decimal % 2  # resto da divisão
+                    result.append(binario)  # aqui vai adicionar na lista de binario
+                    decimal //= 2  # aqui vai dividir o número por 2
+                result.append(decimal)  # aqui vai pegar o que sobrar da divisão e colocar no ultimo ponto
+                result.reverse()  # aqui
+                print("O seu número decimal em binario é:", result)
+            case(3):
+                primeiro_numero = (int(input('Escreva seu número decimal: ')))
+                segundo_numero = (int(input('Escreva seu segundo número: ')))
+                resultado = multiplicação(primeiro_numero, segundo_numero)
+                resultprimeiro = []
+                while primeiro_numero > 1:
+                    binario = primeiro_numero % 2
+                    resultprimeiro.append(binario)
+                    primeiro_numero //= 2
+                resultprimeiro.append(primeiro_numero)
+                resultprimeiro.reverse()
+                print("O primeiro número em decimal é:", resultprimeiro)
+
+                resultsegundo = []
+                while segundo_numero > 1:
+                    binario = segundo_numero % 2
+                    resultsegundo.append(binario)
+                    segundo_numero //= 2
+                resultsegundo.append(segundo_numero)
+                resultsegundo.reverse()
+                print("O primeiro número em decimal é:", resultsegundo)
+
+                print('A soma desses número é:', resultado)
+                decimal = resultado
+                result = []
+                opcao = int()
+
+                while decimal > 1:  # enquanto o numero decimal for maior que vai ficar dividindo
+                    binario = decimal % 2  # resto da divisão
+                    result.append(binario)  # aqui vai adicionar na lista de binario
+                    decimal //= 2  # aqui vai dividir o número por 2
+                result.append(decimal)  # aqui vai pegar o que sobrar da divisão e colocar no ultimo ponto
+                result.reverse()  # aqui
+                print("O seu número decimal em binario é:", result)
+    case(3):
+        print('Saindo do programa')
